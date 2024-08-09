@@ -29,6 +29,6 @@ advice_clean <-
 
 # --- Write dataset to file ---- #
 # This is the data we use later
-readr::write_csv(analysis_clean, 
+readr::write_csv(advice_clean, 
                  "out/data/analysis_data_advice.csv"
 )
