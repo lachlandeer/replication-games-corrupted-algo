@@ -2,3 +2,4 @@ sandbox/
 src/data/
 .Rhistory
 *.Rproj*
+out/
