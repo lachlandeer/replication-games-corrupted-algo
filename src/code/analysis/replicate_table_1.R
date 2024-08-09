@@ -1,4 +1,10 @@
-# 
+# replicate_table_1.R
+#
+# What this file does:
+#  - Replicates Table 1 of LKRHI
+#
+
+# --- Load Libraries --- #
 library(readr)
 library(dplyr)
 library(rlist)
@@ -137,6 +143,40 @@ mod6 <- lm(report ~
 )
 summary(mod6)   
 
+# mod 7
+mod7_df <-
+    mod5_df %>%
+    filter(stringr::str_detect(treatment_combined, 
+                               "opaque")
+           ) %>%
+    mutate(
+        guess_correct = case_when(
+            (turing_test_guess_ai == 1 & source == "AI") | 
+                (turing_test_guess_ai == 0 & source == "Human") ~ TRUE,
+            .default = FALSE
+        )
+    )
+
+mod7 <- lm(report ~
+               I(relevel(as.factor(moral), 
+                         ref = "Honest")
+                 ) *
+               I(relevel(as.factor(source), 
+                         ref = "AI")
+                 ) +
+               personal_injunctive_1 + 
+               personal_descriptive_1 +
+               justification_1 + 
+               shared_responsibility_1 + 
+               age + 
+               I(relevel(as.factor(gender), 
+                         ref = "Female")
+                 ) +
+               grammarly + read + as.factor(guess_correct)
+           , data = mod7_df
+)
+summary(mod7) 
+
 # --- Package the models into a list for export --- #
 reg_list <- list(
     'mod1' = mod1,
@@ -144,7 +184,8 @@ reg_list <- list(
     'mod3' = mod3,
     'mod4' = mod4,
     'mod5' = mod5,
-    'mod6' = mod6
+    'mod6' = mod6,
+    'mod7' = mod7
     )
 
 # --- Export --- #
