@@ -3,3 +3,4 @@ src/data/
 .Rhistory
 *.Rproj*
 out/
+.Rproj.user
