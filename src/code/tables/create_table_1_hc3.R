@@ -5,7 +5,7 @@ library(tibble)
 library(kableExtra)
 
 # Load Regression Models
-models <- list.load("out/analysis/table_1_models.Rds")
+models <- list.load("out/analysis/table_1_models_hc3.Rds")
 
 # --- Extra Info to add to the table --- #
 # setting up column names of table
@@ -67,4 +67,4 @@ tab <-
 tab
 
 tab %>%
-    save_kable(file = "out/tables/table_1.tex", self_contained = FALSE)
+    save_kable(file = "out/tables/table_1_hc3.tex", self_contained = FALSE)
