@@ -112,6 +112,9 @@ subjects_clean_treatments <-
                )
     )
 
+unique(subjects_clean_treatments$treatment_combined)
+
+
 # --- Write dataset to file ---- #
 # This is the data we use in the later analysis
 readr::write_csv(subjects_clean_treatments, 
