@@ -56,7 +56,6 @@ t_matrix_signif <- res %>%
             group1 == "human_honest_transparent" ~ "Human $\\times$ Honest $\\times$ Transparent"
         )
     ) %>%
-
     column_to_rownames("group1")
 
 tab <-
