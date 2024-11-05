@@ -26,10 +26,14 @@ logAll = "2>&1"
 # all            : build paper and slides that are the core of the project
 rule all:
     input:
-        data = config["out_data"] + "analysis_data_advice.csv",
-        data2 = config["out_data"] + "analysis_data_subjects.csv",
-        data3 = config["out_data"] + "analysis_data_subjects_aligned.csv",
-        data4 = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+        mods = config["out_analysis"] + "table_1_models.Rds",
+        mod2 = config["out_analysis"] + "table_1_models_hc2.Rds",
+        mod3 = config["out_analysis"] + "table_1_models_hc3.Rds",
+        report_sixes_tests = config["out_analysis"] + "report_six_model_hyps.json"
+        # data = config["out_data"] + "analysis_data_advice.csv",
+        # data2 = config["out_data"] + "analysis_data_subjects.csv",
+        # data3 = config["out_data"] + "analysis_data_subjects_aligned.csv",
+        # data4 = config["out_data"] + "analysis_data_subjects_with_advice.csv"
 
 # --- Cleaning Rules --- #
 ## clean_all      : delete all output and log files for this project
@@ -50,7 +54,7 @@ rule help_main:
 # Include all other Snakefiles that contain rules that are part of the project
 # 1. project specific
 include: config["rules"] + "data_prep.smk"
-# include: config["rules"] + "analysis.smk"
+include: config["rules"] + "analysis.smk"
 # include: config["rules"] + "figures.smk"
 # include: config["rules"] + "tables.smk"
 # 2. Other rules
