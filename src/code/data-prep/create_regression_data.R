@@ -6,8 +6,42 @@
 #
 
 # --- Load libraries --- #
+library(optparse)
+library(rjson)
 library(readr)
 library(dplyr)
+
+ #--- CLI parsing --- #
+option_list = list(
+    make_option(c("-s", "--subjects"),
+                type = "character",
+                default = NULL,
+                help = "a dataset of subject choices",
+                metavar = "character"),
+   make_option(c("-a", "--advice"),
+               type = "character",
+               default = NULL,
+               help = "A dataset of advice"
+   ),
+	make_option(c("-o", "--out"),
+                type = "character",
+                default = "out.csv",
+                help = "output file name [default = %default]",
+                metavar = "character")
+    );
+
+opt_parser = OptionParser(option_list = option_list);
+opt = parse_args(opt_parser);
+
+if (is.null(opt$subjects)){
+  print_help(opt_parser)
+  stop("Subjects data must be provided", call. = FALSE)
+}
+if (is.null(opt$advice)){
+ print_help(opt_parser)
+ stop("Advice data must be provided", call. = FALSE)
+}
+
 
 # --- Load Data --- #
 subjects_clean <-

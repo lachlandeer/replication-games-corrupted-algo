@@ -1,5 +1,19 @@
 
 
+rule prep_regression_data:
+    input:
+        script = config["src_data_mgt"] + "create_regression_data.R",
+        subjects =  config["out_data"] + "analysis_data_subjects.csv",
+        advice = config["out_data"] + "analysis_data_advice.csv"
+    output:
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    log:
+        config["log"] + "data_prep/create_regression_data.txt"
+    shell:
+        "{runR} {input.script} --subjects {input.subjects} --advice {input.advice} \
+            --out {output.data} \
+            > {log} {logAll}"
+
 rule prep_subjects_data:
     input:
         script = config["src_data_mgt"] + "create_analysis_data_subjects.R",
