@@ -1,3 +1,17 @@
+## mechanism regression
+rule mechanism_regression:
+    input:
+        script = config["src_analysis"] + "mechanism_norms_regression.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        models = config["out_analysis"] + "mechanism_models.Rds"
+    log:
+        config["log"] + "analysis/mechanism_norms_regression.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.models} \
+            > {log} {logAll}"
+
 ## report_sixes: Results for the Reported six regressions
 rule report_sixes:
     input:

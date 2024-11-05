@@ -29,7 +29,8 @@ rule all:
         mods = config["out_analysis"] + "table_1_models.Rds",
         mod2 = config["out_analysis"] + "table_1_models_hc2.Rds",
         mod3 = config["out_analysis"] + "table_1_models_hc3.Rds",
-        report_sixes_tests = config["out_analysis"] + "report_six_model_hyps.json"
+        report_sixes_tests = config["out_analysis"] + "report_six_model_hyps.json",
+        mechanisms = config["out_analysis"] + "mechanism_models.Rds"
         # data = config["out_data"] + "analysis_data_advice.csv",
         # data2 = config["out_data"] + "analysis_data_subjects.csv",
         # data3 = config["out_data"] + "analysis_data_subjects_aligned.csv",
