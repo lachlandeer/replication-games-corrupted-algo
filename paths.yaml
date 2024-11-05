@@ -10,7 +10,7 @@ src_model_specs: "src/model-specs/"
 src_data_specs : "src/data-specs/"
 src_table_specs: "src/table-specs/"
 src_tables     : "src/code/tables/"
-src_figures    : "src/figs/"
+src_figures    : "src/code/figs/"
 
 out_analysis   : "out/analysis/"
 out_data       : "out/data/"

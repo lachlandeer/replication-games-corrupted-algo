@@ -26,15 +26,21 @@ logAll = "2>&1"
 # all            : build outputs that are the core of the project
 rule all:
     input:
-        report_sixes_tests = config["out_analysis"] + "report_six_model_hyps.json",
-        t_test_treatments = config["out_tables"] + "table_ttest_pairwise_dieroll.tex",
-        t_test_overreport = config["out_tables"] + "table_ttest_overreport.tex",
-        t_test_aligned = config["out_tables"] + "table_ttest_pairwise_dieroll_aligned.tex",
-        table_1 = config["out_tables"] + "table_1.tex",
-        table_1_hc3 = config["out_tables"] + "table_1_hc3.tex",
-        table_1_hc2 = config["out_tables"] + "table_1_hc2.tex",
-        table_sixes = config["out_tables"] + "table_report_sixes.tex",
-        table_mechanisms = config["out_tables"] + "table_mechanism.tex"
+        report_sixes_tests  = config["out_analysis"] + "report_six_model_hyps.json",
+        t_test_treatments   = config["out_tables"] + "table_ttest_pairwise_dieroll.tex",
+        t_test_overreport   = config["out_tables"] + "table_ttest_overreport.tex",
+        t_test_aligned      = config["out_tables"] + "table_ttest_pairwise_dieroll_aligned.tex",
+        table_1             = config["out_tables"] + "table_1.tex",
+        table_1_hc3         = config["out_tables"] + "table_1_hc3.tex",
+        table_1_hc2         = config["out_tables"] + "table_1_hc2.tex",
+        table_sixes         = config["out_tables"] + "table_report_sixes.tex",
+        table_mechanisms    = config["out_tables"] + "table_mechanism.tex",
+        avg_dieroll         = config["out_figures"] + "dieroll_outcome_treatment.pdf",
+        dieroll_six         = config["out_figures"] + "prop_sixes.pdf",
+        mech_descriptive    = config["out_figures"] + "descriptive_treatment.pdf",
+        mech_injunctive     = config["out_figures"] + "injunctive_treatment.pdf",
+        mech_justifiability = config["out_figures"] + "justifiability_treatment.pdf",
+        mech_shared         = config["out_figures"] + "shared_treatment.pdf"
 
 # --- Cleaning Rules --- #
 ## clean_all      : delete all output and log files for this project
@@ -56,7 +62,7 @@ rule help_main:
 # 1. project specific
 include: config["rules"] + "data_prep.smk"
 include: config["rules"] + "analysis.smk"
-# include: config["rules"] + "figures.smk"
+include: config["rules"] + "figures.smk"
 include: config["rules"] + "tables.smk"
 # 2. Other rules
 include: config["rules"] + "renv.smk"

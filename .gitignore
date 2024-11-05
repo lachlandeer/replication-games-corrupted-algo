@@ -6,3 +6,4 @@ out/
 .Rproj.user
 .snakemake
 logs/
+Rplots.pdf

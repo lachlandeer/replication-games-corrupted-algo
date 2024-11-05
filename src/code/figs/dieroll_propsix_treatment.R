@@ -4,10 +4,34 @@ library(dplyr)
 library(ggpubr)
 library(ggpubfigs)
 library(ggh4x)
+library(optparse)
+
+ #--- CLI parsing --- #
+option_list = list(
+    make_option(c("-d", "--data"),
+                type = "character",
+                default = NULL,
+                help = "a csv file name",
+                metavar = "character"),
+	make_option(c("-o", "--out"),
+                type = "character",
+                default = "out.pdf",
+                help = "output file name [default = %default]",
+                metavar = "character")
+    );
+
+opt_parser = OptionParser(option_list = option_list);
+opt = parse_args(opt_parser);
+
+if (is.null(opt$data)){
+  print_help(opt_parser)
+  stop("Input models must be provided", call. = FALSE)
+}
+
 
 # --- Load Data --- #
 df <- 
-    read_csv("out/data/analysis_data_subjects_with_advice.csv")
+    read_csv(opt$data)
 
 # --- Data Manipulation --- #
 # Code up order of treatments
@@ -82,4 +106,4 @@ ggbarplot(data = subset(proportions_by_treatment, report_six == TRUE),
 
 
 # --- Save --- #
-ggsave("out/figs/prop_sixes.pdf",  height = 3.72, width = 5.5, unit = "in")
+ggsave(opt$out,  height = 3.72, width = 5.5, unit = "in")
