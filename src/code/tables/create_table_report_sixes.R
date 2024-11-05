@@ -3,9 +3,32 @@ library(rlist)
 library(modelsummary)
 library(tibble)
 library(kableExtra)
+library(optparse)
 
-# Load Regression Models
-models <- list.load("out/analysis/report_six_models.Rds")
+ #--- CLI parsing --- #
+option_list = list(
+    make_option(c("-m", "--models"),
+                type = "character",
+                default = NULL,
+                help = "a Rds file name",
+                metavar = "character"),
+	make_option(c("-o", "--out"),
+                type = "character",
+                default = "out.tex",
+                help = "output file name [default = %default]",
+                metavar = "character")
+    );
+
+opt_parser = OptionParser(option_list = option_list);
+opt = parse_args(opt_parser);
+
+if (is.null(opt$models)){
+  print_help(opt_parser)
+  stop("Input models must be provided", call. = FALSE)
+}
+
+# --- Load Regression Models --- #
+models <- list.load(opt$models)
 
 # --- Extra Info to add to the table --- #
 # setting up column names of table
@@ -63,4 +86,4 @@ tab <-
 tab
 
 tab %>%
-    save_kable(file = "out/tables/table_report_sixes.tex", self_contained = FALSE)
+    save_kable(file = opt$out, self_contained = FALSE)

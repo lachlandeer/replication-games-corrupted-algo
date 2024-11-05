@@ -23,24 +23,18 @@ runR = "Rscript --no-save --no-restore --verbose"
 logAll = "2>&1"
 
 # --- Main Build Rule --- #
-# all            : build paper and slides that are the core of the project
+# all            : build outputs that are the core of the project
 rule all:
     input:
-        #mods = config["out_analysis"] + "table_1_models.Rds",
-        # mod2 = config["out_analysis"] + "table_1_models_hc2.Rds",
-        # mod3 = config["out_analysis"] + "table_1_models_hc3.Rds",
         report_sixes_tests = config["out_analysis"] + "report_six_model_hyps.json",
-        mechanisms = config["out_analysis"] + "mechanism_models.Rds",
         t_test_treatments = config["out_tables"] + "table_ttest_pairwise_dieroll.tex",
         t_test_overreport = config["out_tables"] + "table_ttest_overreport.tex",
         t_test_aligned = config["out_tables"] + "table_ttest_pairwise_dieroll_aligned.tex",
         table_1 = config["out_tables"] + "table_1.tex",
         table_1_hc3 = config["out_tables"] + "table_1_hc3.tex",
         table_1_hc2 = config["out_tables"] + "table_1_hc2.tex",
-        # data = config["out_data"] + "analysis_data_advice.csv",
-        # data2 = config["out_data"] + "analysis_data_subjects.csv",
-        # data3 = config["out_data"] + "analysis_data_subjects_aligned.csv",
-        # data4 = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+        table_sixes = config["out_tables"] + "table_report_sixes.tex",
+        table_mechanisms = config["out_tables"] + "table_mechanism.tex"
 
 # --- Cleaning Rules --- #
 ## clean_all      : delete all output and log files for this project

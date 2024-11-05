@@ -39,3 +39,31 @@ rule table_1_tex_hc2:
         "{runR} {input.script} --models {input.models}  \
             --out {output.tex} \
             > {log} {logAll}"
+
+# table_mechanisms:   LaTeX output for replication of mechanism regressions
+rule table_mechanisms:
+    input:
+        script = config["src_tables"] + "create_table_mechanisms.R",
+        models = config["out_analysis"] + "mechanism_models.Rds"
+    output:
+        tex = config["out_tables"] + "table_mechanism.tex",
+    log:
+        config["log"] + "tables/table_mechanisms.txt"
+    shell:
+        "{runR} {input.script} --models {input.models}  \
+            --out {output.tex} \
+            > {log} {logAll}"
+
+# table_mechanisms:   LaTeX output for replication of reporting six regressions
+rule table_sixes:
+    input:
+        script = config["src_tables"] + "create_table_report_sixes.R",
+        models = config["out_analysis"] + "report_six_models.Rds"
+    output:
+        tex = config["out_tables"] + "table_report_sixes.tex",
+    log:
+        config["log"] + "tables/table_report_sixes.txt"
+    shell:
+        "{runR} {input.script} --models {input.models}  \
+            --out {output.tex} \
+            > {log} {logAll}"
