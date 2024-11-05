@@ -1,5 +1,4 @@
-
-
+## prep_regression_data   : Merge subjects and advice data for main regression specifications
 rule prep_regression_data:
     input:
         script = config["src_data_mgt"] + "create_regression_data.R",
@@ -14,6 +13,7 @@ rule prep_regression_data:
             --out {output.data} \
             > {log} {logAll}"
 
+## prep_subjects_data   : Clean up  subjects data 
 rule prep_subjects_data:
     input:
         script = config["src_data_mgt"] + "create_analysis_data_subjects.R",
@@ -28,6 +28,7 @@ rule prep_subjects_data:
             --out {output.data} \
             > {log} {logAll}"
 
+## prep_subjects_data_aligned   : Clean up  subjects data including the aligned treatments
 rule prep_subjects_data_aligned:
     input:
         script = config["src_data_mgt"] + "create_data_aligned_treatments.R",
@@ -42,6 +43,7 @@ rule prep_subjects_data_aligned:
             --out {output.data} \
             > {log} {logAll}"
 
+## prep_advice_data   : Clean up the advice data set
 rule prep_advice_data:
     input:
         script = config["src_data_mgt"] + "create_analysis_data_advice.R",
