@@ -27,7 +27,8 @@ logAll = "2>&1"
 rule all:
     input:
         data = config["out_data"] + "analysis_data_advice.csv",
-        data2 = config["out_data"] + "analysis_data_subjects.csv"
+        data2 = config["out_data"] + "analysis_data_subjects.csv",
+        data3 = config["out_data"] + "analysis_data_subjects_aligned.csv"
 
 # --- Cleaning Rules --- #
 ## clean_all      : delete all output and log files for this project
