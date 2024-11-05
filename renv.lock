@@ -616,6 +616,16 @@
       ],
       "Hash": "177475892cf4a55865868527654a7741"
     },
+    "getopt": {
+      "Package": "getopt",
+      "Version": "1.20.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "stats"
+      ],
+      "Hash": "ed33b16c6d24f7ced1d68877ac2509ee"
+    },
     "ggh4x": {
       "Package": "ggh4x",
       "Version": "0.2.8.9000",
@@ -1175,6 +1185,18 @@
         "askpass"
       ],
       "Hash": "edde731e84cf3d42aa9b7f04b8de5941"
+    },
+    "optparse": {
+      "Package": "optparse",
+      "Version": "1.7.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "getopt",
+        "methods"
+      ],
+      "Hash": "ce5f8381cd2c38d1fc14c83d8b21efd0"
     },
     "parameters": {
       "Package": "parameters",
