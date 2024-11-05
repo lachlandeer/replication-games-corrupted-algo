@@ -1,4 +1,4 @@
-## mechanism regression
+## mechanism regression: Report results of regressions that detail mechanisms
 rule mechanism_regression:
     input:
         script = config["src_analysis"] + "mechanism_norms_regression.R",
