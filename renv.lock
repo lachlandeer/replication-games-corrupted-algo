@@ -1484,6 +1484,16 @@
       ],
       "Hash": "eeeeaa5b8f13240872569df0718c768c"
     },
+    "rjson": {
+      "Package": "rjson",
+      "Version": "0.2.23",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "7a04e9eff95857dbf557b4e5f0b3d1a8"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "1.1.1",

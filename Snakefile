@@ -26,7 +26,8 @@ logAll = "2>&1"
 # all            : build paper and slides that are the core of the project
 rule all:
     input:
-        data = config["out_data"] + "analysis_data_advice.csv"
+        data = config["out_data"] + "analysis_data_advice.csv",
+        data2 = config["out_data"] + "analysis_data_subjects.csv"
 
 # --- Cleaning Rules --- #
 ## clean_all      : delete all output and log files for this project

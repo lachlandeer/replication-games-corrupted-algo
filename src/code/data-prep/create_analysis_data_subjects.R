@@ -6,25 +6,64 @@
 #
 
 # --- Load Libraries --- #
+library(optparse)
+library(rjson)
 library(readxl)
 library(dplyr)
 
+ #--- CLI parsing --- #
+option_list = list(
+    make_option(c("-d", "--data"),
+                type = "character",
+                default = NULL,
+                help = "a csv file name",
+                metavar = "character"),
+   make_option(c("-s", "--subset"),
+               type = "character",
+               default = NULL,
+               help = "A condition to select a subset of data"
+   ),
+	make_option(c("-o", "--out"),
+                type = "character",
+                default = "out.csv",
+                help = "output file name [default = %default]",
+                metavar = "character")
+    );
+
+opt_parser = OptionParser(option_list = option_list);
+opt = parse_args(opt_parser);
+
+if (is.null(opt$data)){
+  print_help(opt_parser)
+  stop("Input data must be provided", call. = FALSE)
+}
+if (is.null(opt$subset)){
+ print_help(opt_parser)
+ stop("A subsetting condition", call. = FALSE)
+}
+
 # --- Load Data --- #
 subject_df <- 
-    read_xlsx("src/data/data.xlsx") %>% 
+    read_xlsx(opt$data) %>% 
     janitor::clean_names()
 
-#advice_df  <- 
-#    read_xlsx("src/data/Final advice set (120 - 20x2x3).xlsx") 
-
+print("Loading Subsetting Condition")
+data_filter <- fromJSON(file = opt$subset)
 
 # --- Clean Up the Subjects Data --- #
-subject_clean <-
-    subject_df %>%
-    # completes the experiment -- 
-    # needed to check the authors paper to find what variable delineates "finishing"
-    # the task
-    filter(completed_scales_turing == 1) %>%
+# subject_clean <-
+#     subject_df %>%
+#     # completes the experiment -- 
+#     # needed to check the authors paper to find what variable delineates "finishing"
+#     # the task
+#     filter(completed_scales_turing == 1) %>%
+
+# Filter data
+subjects_filtered <- 
+    subset(subject_df, eval(parse(text = data_filter$KEEP_CONDITION)))
+
+subjects_clean <-
+    subjects_filtered %>%
     #filter(completed_all == 1)
     # treatment determined by the 'random_number' a subject is assigned
     # so lets rename it so we dont have to think about that again
@@ -91,7 +130,7 @@ subject_clean <-
 # - source
  
 subjects_clean_treatments <-
-    subject_clean %>%
+    subjects_clean %>%
     mutate(treatment_combined = 
                case_when(
                    source == "AI" & moral == "Honest" & 
@@ -125,5 +164,5 @@ subjects_clean_treatments <-
 # --- Write dataset to file ---- #
 # This is the data we use in the later analysis
 readr::write_csv(subjects_clean_treatments, 
-                 "out/data/analysis_data_subjects.csv"
+                 opt$out
                  )
