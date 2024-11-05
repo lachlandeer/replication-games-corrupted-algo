@@ -23,11 +23,10 @@ runR = "Rscript --no-save --no-restore --verbose"
 logAll = "2>&1"
 
 # --- Main Build Rule --- #
-## all            : build paper and slides that are the core of the project
-# rule all:
-#     input:
-#         paper_pdf     = PROJ_NAME + ".pdf",
-#         beamer_slides = PROJ_NAME + "_slides.pdf"
+# all            : build paper and slides that are the core of the project
+rule all:
+    input:
+        data = config["out_data"] + "analysis_data_advice.csv"
 
 # --- Cleaning Rules --- #
 ## clean_all      : delete all output and log files for this project
@@ -47,7 +46,7 @@ rule help_main:
 # --- Sub Rules --- #
 # Include all other Snakefiles that contain rules that are part of the project
 # 1. project specific
-# include: config["rules"] + "data_mgt.smk"
+include: config["rules"] + "data_prep.smk"
 # include: config["rules"] + "analysis.smk"
 # include: config["rules"] + "figures.smk"
 # include: config["rules"] + "tables.smk"
