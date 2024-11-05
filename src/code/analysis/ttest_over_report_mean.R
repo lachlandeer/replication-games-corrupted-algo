@@ -4,8 +4,34 @@ library(rstatix)
 library(tidyr)
 library(kableExtra)
 
+library(optparse)
+
+ #--- CLI parsing --- #
+option_list = list(
+    make_option(c("-d", "--data"),
+                type = "character",
+                default = NULL,
+                help = "a csv file name",
+                metavar = "character"),
+	make_option(c("-o", "--out"),
+                type = "character",
+                default = "out.tex",
+                help = "output file name [default = %default]",
+                metavar = "character")
+    );
+
+opt_parser = OptionParser(option_list = option_list);
+opt = parse_args(opt_parser);
+
+if (is.null(opt$data)){
+  print_help(opt_parser)
+  stop("Input data must be provided", call. = FALSE)
+}
+
+# --- Load and Manipulate Data Structure --- #
+
 df <- 
-    read_csv("out/data/analysis_data_subjects_with_advice.csv")
+    read_csv(opt$data)
 
 df %>% t_test(report ~ 1, mu = 3.5)
 
@@ -13,6 +39,8 @@ df %>% t_test(report ~ 1, mu = 3.5)
 df_nest <-
     df %>% 
     nest(-treatment_combined) 
+
+# --- T-testing --- #
 
 mod_fit <- function(data) {
     data %>%
@@ -50,6 +78,7 @@ res <-
         )
     )
 
+# --- Convert to Table --- #
 tab <- 
     res %>%
     select(treatment_combined, t_stat_signif) %>%
@@ -61,5 +90,5 @@ tab <-
 tab
 
 tab %>%
-    save_kable(file = "out/tables/table_ttest_overreport.tex", self_contained = FALSE)
+    save_kable(file = opt$out, self_contained = FALSE)
 

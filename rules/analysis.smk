@@ -81,3 +81,45 @@ rule replicate_table_1_hc3:
         "{runR} {input.script} --data {input.data}  \
             --out {output.models} \
             > {log} {logAll}"     
+
+## t_test_main:   Main treatment comparisons via t-tests with bonferroni corrections
+rule t_test_main:
+    input: 
+        script = config["src_analysis"] + "t_test.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        tex = config["out_tables"] + "table_ttest_pairwise_dieroll.tex"
+    log:
+        config["log"] + "analysis/t_test.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.tex} \
+            > {log} {logAll}" 
+
+## t_test_overreport:   Test for overreporting via ttests
+rule t_test_overreport:
+    input: 
+        script = config["src_analysis"] + "ttest_over_report_mean.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        tex = config["out_tables"] + "table_ttest_overreport.tex"
+    log:
+        config["log"] + "analysis/ttest_over_report_mean.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.tex} \
+            > {log} {logAll}" 
+
+# t_test_aligned: Additional t tests for the aligned treatemnts
+rule t_test_aligned:
+    input: 
+        script = config["src_analysis"] + "t_test_aligned.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        tex = config["out_tables"] + "table_ttest_pairwise_dieroll_aligned.tex"
+    log:
+        config["log"] + "analysis/t_test_aligned.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.tex} \
+            > {log} {logAll}" 
