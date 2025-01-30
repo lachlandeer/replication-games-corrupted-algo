@@ -14,7 +14,6 @@ The dataset used in this replication is sourced from [Leib et al's OSF repositor
 For detailed variable descriptions and data collection methodologies, refer to the `data/README.md` file.
 
 - [X] We certify that the author(s) of the manuscript have legitimate access to and permission to use the data used in this manuscript. 
-- [X] We certify that the author(s) of the manuscript have documented permission to redistribute/publish the data contained within this replication package.
 - [X] All data **are** publicly available.
 
 
@@ -131,7 +130,10 @@ The code was last run on a **16-core Intel-based laptop with PopOS version 5.18.
      snakemake --cores 1 renv_restore
      ```
 
-5. **Execute the Analysis Pipeline**:
+5. Download the datafiles `data.xlsx` and `Final advice set (120 - 20x2x3).xlsx` from Leib et al's OSF page and place them in `src/data`.
+   - Rename the file `Final advice set (120 - 20x2x3).xlsx` to `Final_advice_data.xlsx`
+
+6. **Execute the Analysis Pipeline**:
    - Run the Snakemake pipeline:
      ```bash
      snakemake all --cores 1
