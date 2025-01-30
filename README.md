@@ -1,135 +1,104 @@
 # A Replication of "Corrupted by Algorithms?"
 
-<!-- [![Build Status](https://travis-ci.org/lachlandeer/snakemake-econ-r.svg?branch=master)](https://travis-ci.org/lachlandeer/snakemake-econ-r) -->
-[![.github/workflows/build.yaml](https://github.com/lachlandeer/snakemake-econ-r/actions/workflows/build.yaml/badge.svg)](https://github.com/lachlandeer/snakemake-econ-r/actions/workflows/build.yaml)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![lifecycle](https://img.shields.io/badge/version-0.1.0-red.svg)]()
 
-## Project
+## Project Overview
 
-Our project involves replicating the main tables and figures of Leib et al's EJ article "[Corrupted by Algorithms? How AI-generated and Human-written Advice Shape (Dis)honesty.](https://academic.oup.com/ej/article/134/658/766/7269206)"
+This project replicates the main tables and figures from Leib et al.'s article, ["Corrupted by Algorithms? How AI-generated and Human-written Advice Shape (Dis)honesty"](https://academic.oup.com/ej/article/134/658/766/7269206) published in the *Economic Journal*. The study investigates the influence of AI-generated versus human-written advice on dishonest behavior.
 
-## Installation Instructions
+## Data Description
 
-Follow these Steps to install the necessary software on your system
+The dataset used in this replication is sourced from [Leib et al's OSF repostiory](https://osf.io/g3sw2/).
 
-You need to have the following software and packages installed:
+For detailed variable descriptions and data collection methodologies, refer to the `data/README.md` file.
 
-1. Python 3 (Python 3.6 or higher)
-2. Snakemake (we'll install the correct version in a couple of lines time!)
-3. R (version 4.X.x)
-### Installing Python
+## Code and Reproducibility
 
-Either:
+The analysis is conducted using R scripts organized in the `src/` directory. 
 
-1. Install Anaconda Python:
-    - We provide instructions on how to install anaconda python [here](https://pp4rs.github.io/2020-uzh-installation-guide/python/)
-2. Install Python using the deadsnakes ppa:
-    - Here's how to add the deadsnakes ppa and install Python 3.10
-    ```bash
-    $ sudo apt-get install software-properties-common
-    $ sudo add-apt-repository ppa:deadsnakes/ppa
-    $ sudo apt-get update
-    $ sudo apt-get install python3.10
-    ```
+- `src/script1.R`: Description of analysis or figure/table generated.
+- `src/script2.R`: Description of analysis or figure/table generated.
+- ...
 
-### Installing Snakemake
+The project utilizes the `renv` package for R to manage dependencies, ensuring a reproducible environment. The `renv.lock` file captures the exact package versions used.
 
-We have included a `requirements.txt` file that we can use to install a specific version of snakemake.
-This makes sure that our example runs on your machine (or at least won't break because you use a different version of snakemake than we do)
+We use `Snakemake` to manage the workflow.
 
-``` bash
-pip3 install -r requirements.txt
-```
+## Software and Dependencies
 
-you may need to replace `pip3` with `pip`
+To replicate the analyses, ensure the following software is installed:
 
+- **Python**: Version 3.6 or higher
+- **Snakemake**: [Installation instructions](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
+- **R**: Version 4.2.0 or higher
 
-### Installing `R`
+R package dependencies are specified in the `renv.lock` file. To install them:
 
-You need to have R version 4.X.X installed on your system and callable from a terminal session.
-
-### Install the Required `R` libraries
-
-We utilize many additional R packages inside the scripts that build our project.
-To ensure that our project runs on every machine without issues relating to R packages not being installed we utilize `renv` to control the list of packages needed to run this example, and to monitor the version of the package we use.
-
-Once you have completed the installation instructions above, we have provided a simple command to install renv.
-Open a terminal and navigate to this directory.
-Then in the terminal enter the following command to install renv:
-
-``` bash
-snakemake --cores 1 renv_install
-```
-
-Then you will need to provide consent for `renv` to be able to write files to your system:
-
-``` bash
-snakemake --cores 1 renv_consent
-```
-
-Once this is complete you can use renv to create a separate R environment that contains the packages we use in our example by entering the following command into the terminal:
-
-``` bash
-snakemake --cores 1 renv_init
-```
-
-The above command will initialize a separate R environment for this project.
-
-Now we will install the necessary packages (and their precise versions) which are stored in the `renv.lock` file:
-
-``` bash
-snakemake --cores 1 renv_restore
-```
-
-This will install all the packages we need. It may take a while.
-
-## Running the Code
-
-Once the installation instructions are complete, we can run the project.
-The result will be all figures (PDF), tables (TeX)  and any additional statistics used (JSON files) in the replication report
-
-To run the project, enter the following into the terminal:
-
-``` bash
-snakemake --cores 4 all
-```
-
-This will run through all the R scripts in order to complete the build of the project.
-
-## Visualization of the Workflow
-
-Snakemake workflows are a directed acyclic graph (DAG).
-We can visualize the relationship between the rules (a simplified view of the DAG) in our workflow:
-
-![Rulegraph for Workflow](./assets/rulegraph.png)
-
-Check out the rules in `./rules/dag.smk` for various visualizations of the workflow. 
-You will need to install `graphviz` to run these rules - we have included a rule inside `dag.smk` to install this for you. 
-
-## Archiving `R` packages in a new project
-
-* If you are starting a new project, which is likely if you are using
-   this template, you need to initialize a new renv instance to
-   track your `R` packages and store them.
-   Enter the following command into the same terminal as above
-   and press `Return`.
-
-   ``` bash
-   snakemake --cores 1 renv_init
+1. Open R in the project directory.
+2. Run:
+   ```r
+   install.packages("renv")
+   renv::restore()
    ```
 
-* If we add new `R` packages that we want to include in a project, we take a `snapshot` of the packages utilized in the project with:
+OR use the Snakemake rules provided in `rules/renv.smk`.
 
-```bash
-snakemake --cores 1 renv_snap
-```
+## Instructions for Replication
 
-## Comments / Suggestions / Issues
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/lachlandeer/replication-games-corrupted-algo.git
+   cd replication-games-corrupted-algo
+   ```
 
-We'd love to hear your comments, suggestions or installation issues encountered when running the example.
-[Post an issue on Github.](https://github.com/lachlandeer/replication-games-corrupted-algo/issues)
+2. **Set Up Python Environment**:
+   - Install [Anaconda Python](https://www.anaconda.com/products/individual) or use the deadsnakes PPA for Python installation.
+   - Create and activate a virtual environment:
+     ```bash
+     conda create -n replication-env python=3.8
+     conda activate replication-env
+     ```
 
-## Suggested Citation
+3. **Install Snakemake**:
+   ```bash
+   pip3 install -r requirements.txt
+   ```
 
-TBD
+4. **Set Up R Environment**:
+   - Ensure R is installed.
+   - Restore R package dependencies:
+     ```r
+     install.packages("renv")
+     renv::restore()
+     ```
+     OR
+     ```bash
+     snakemake --cores 1 renv_install
+     snakemake --cores 1 renv_consent
+     snakemake --cores 1 renv_restore
+     ```
+
+5. **Execute the Analysis Pipeline**:
+   - Run the Snakemake pipeline:
+     ```bash
+     snakemake all --cores 1
+     ```
+
+   This command will execute the analysis workflow as defined in the `Snakefile`, generating the replicated tables and figures.
+
+## Citation and License
+
+If you use or adapt this replication code, please cite the original study:
+
+Margarita Leib, Nils Köbis, Rainer Michael Rilke, Marloes Hagens, Bernd Irlenbusch, Corrupted by Algorithms? How AI-generated and Human-written Advice Shape (Dis)honesty, The Economic Journal, Volume 134, Issue 658, February 2024, Pages 766–784, https://doi.org/10.1093/ej/uead056
+
+Additionally, cite our replication report as:
+
+[Lachlan Deer, Adithya  Krishna, Lyla Zhang]. (2025). "Replication Report:  Corrupted By Algorithms? How AI-generated And Human-written Advice Shape (Dis)Honesty". I4R Discussion Paper Series XXX
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+*Note: Ensure all software installations and environment setups are compatible with your operating system. For any issues or questions, please open an issue in this repository.*
