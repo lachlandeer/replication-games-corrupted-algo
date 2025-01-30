@@ -28,6 +28,7 @@ rule all:
     input:
         turing_test         = config["out_analysis"] + "turing_test.json",
         report_sixes_tests  = config["out_analysis"] + "report_six_model_hyps.json",
+        rob_over_report     = config["out_analysis"] + "robustness_over_report.json",
         t_test_treatments   = config["out_tables"] + "table_ttest_pairwise_dieroll.tex",
         t_test_overreport   = config["out_tables"] + "table_ttest_overreport.tex",
         t_test_aligned      = config["out_tables"] + "table_ttest_pairwise_dieroll_aligned.tex",

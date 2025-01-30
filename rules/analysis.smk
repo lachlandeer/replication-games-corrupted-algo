@@ -40,6 +40,19 @@ rule robustness_all_outcomes_simple:
             --out {output.models} \
             > {log} {logAll}"
 
+rule robustness_over_report:
+    input:
+        script = config["src_analysis"] + "robustness_over_report.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        tests = config["out_analysis"] + "robustness_over_report.json"
+    log:
+        config["log"] + "analysis/robustness_over_report.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.tests} \
+            > {log} {logAll}"
+
 ## report_sixes: Results for the Reported six regressions
 rule report_sixes:
     input:
