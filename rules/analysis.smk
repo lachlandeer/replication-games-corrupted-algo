@@ -12,6 +12,34 @@ rule mechanism_regression:
             --out {output.models} \
             > {log} {logAll}"
 
+## robustness_all_outcomes_interacted: Results for each reported outcome via LPM using all treatments and interactions
+rule robustness_all_outcomes_interacted:
+    input:
+        script = config["src_analysis"] + "robustness_lpm_all_interacted.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        models = config["out_analysis"] + "robustness_lpm_all_interacted.Rds"
+    log:
+        config["log"] + "analysis/robustness_lpm_all_interacted.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.models} \
+            > {log} {logAll}"
+
+## robustness_all_outcomes_simple: Results for each reported outcome via LPM using opacity data
+rule robustness_all_outcomes_simple:
+    input:
+        script = config["src_analysis"] + "robustness_lpm_all_simple.R",
+        data = config["out_data"] + "analysis_data_subjects_with_advice.csv"
+    output:
+        models = config["out_analysis"] + "robustness_lpm_all_simple.Rds"
+    log:
+        config["log"] + "analysis/robustness_lpm_all_simple.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.models} \
+            > {log} {logAll}"
+
 ## report_sixes: Results for the Reported six regressions
 rule report_sixes:
     input:

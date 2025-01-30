@@ -67,3 +67,31 @@ rule table_sixes:
         "{runR} {input.script} --models {input.models}  \
             --out {output.tex} \
             > {log} {logAll}"
+
+# table_lpm_outcomes_all_simple:   LaTeX output for robustness using all outcomes, simple specification
+rule table_lpm_outcomes_all_simple:
+    input:
+        script = config["src_tables"] + "create_table_lpm_outcomes_all_simple.R",
+        models = config["out_analysis"] + "robustness_lpm_all_simple.Rds"
+    output:
+        tex = config["out_tables"] + "robustness_lpm_all_simple.tex",
+    log:
+        config["log"] + "tables/table_lpm_all_simple.txt"
+    shell:
+        "{runR} {input.script} --models {input.models}  \
+            --out {output.tex} \
+            > {log} {logAll}"
+
+# table_lpm_outcomes_all_interacted:   LaTeX output for robustness using all outcomes, treatment interacted specification
+rule table_lpm_outcomes_all_interacted:
+    input:
+        script = config["src_tables"] + "create_table_lpm_outcomes_all_interacted.R",
+        models = config["out_analysis"] + "robustness_lpm_all_interacted.Rds"
+    output:
+        tex = config["out_tables"] + "robustness_lpm_all_interacted.tex",
+    log:
+        config["log"] + "tables/table_lpm_all_interacted.txt"
+    shell:
+        "{runR} {input.script} --models {input.models}  \
+            --out {output.tex} \
+            > {log} {logAll}"

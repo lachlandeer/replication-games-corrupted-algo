@@ -35,6 +35,8 @@ rule all:
         table_1_hc2         = config["out_tables"] + "table_1_hc2.tex",
         table_sixes         = config["out_tables"] + "table_report_sixes.tex",
         table_mechanisms    = config["out_tables"] + "table_mechanism.tex",
+        table_rob_simple    = config["out_tables"] + "robustness_lpm_all_simple.tex",
+        table_rob_inter     = config["out_tables"] + "robustness_lpm_all_interacted.tex",
         avg_dieroll         = config["out_figures"] + "dieroll_outcome_treatment.pdf",
         dieroll_six         = config["out_figures"] + "prop_sixes.pdf",
         mech_descriptive    = config["out_figures"] + "descriptive_treatment.pdf",
