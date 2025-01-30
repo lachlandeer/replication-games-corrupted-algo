@@ -26,6 +26,7 @@ logAll = "2>&1"
 # all            : build outputs that are the core of the project
 rule all:
     input:
+        turing_test         = config["out_analysis"] + "turing_test.json",
         report_sixes_tests  = config["out_analysis"] + "report_six_model_hyps.json",
         t_test_treatments   = config["out_tables"] + "table_ttest_pairwise_dieroll.tex",
         t_test_overreport   = config["out_tables"] + "table_ttest_overreport.tex",

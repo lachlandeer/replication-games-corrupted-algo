@@ -68,6 +68,20 @@ rule report_sixes_hyp_tests:
             --out {output.json} \
             > {log} {logAll}"
 
+## turing_test: Replicates table 1 of original paper
+rule turing_test:
+    input:
+        script = config["src_analysis"] + "turing_test.R",
+        data   = config["out_data"] + "analysis_data_subjects_with_advice.csv", 
+    output:
+        json = config["out_analysis"] + "turing_test.json"
+    log:
+        config["log"] + "analysis/turing_test.txt"
+    shell:
+        "{runR} {input.script} --data {input.data}  \
+            --out {output.json} \
+            > {log} {logAll}"
+
 ## replicate_table_1: Replicates table 1 of original paper
 rule replicate_table_1:
     input:
