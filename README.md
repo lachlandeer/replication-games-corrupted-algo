@@ -30,6 +30,9 @@ The project utilizes the `renv` package for R to manage dependencies, ensuring a
 
 We use `Snakemake` to manage the workflow.
 
+- `Snakefile` in the root directory manages the build
+- Snakefiles in the `rules/` subdirectory contain rules that execute analysis.
+
 ## Software and Dependencies
 
 To replicate the analyses, ensure the following software is installed:
