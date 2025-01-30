@@ -7,11 +7,16 @@
 
 This project replicates the main tables and figures from Leib et al.'s article, ["Corrupted by Algorithms? How AI-generated and Human-written Advice Shape (Dis)honesty"](https://academic.oup.com/ej/article/134/658/766/7269206) published in the *Economic Journal*. The study investigates the influence of AI-generated versus human-written advice on dishonest behavior.
 
-## Data Description
+## Data Availability and Provenance Statements
 
-The dataset used in this replication is sourced from [Leib et al's OSF repostiory](https://osf.io/g3sw2/).
+The dataset used in this replication is sourced from [Leib et al's OSF repository](https://osf.io/g3sw2/).
 
 For detailed variable descriptions and data collection methodologies, refer to the `data/README.md` file.
+
+- [X] We certify that the author(s) of the manuscript have legitimate access to and permission to use the data used in this manuscript. 
+- [X] We certify that the author(s) of the manuscript have documented permission to redistribute/publish the data contained within this replication package.
+- [X] All data **are** publicly available.
+
 
 ## Code and Reproducibility
 
