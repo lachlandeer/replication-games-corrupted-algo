@@ -57,7 +57,46 @@ R package dependencies are specified in the `renv.lock` file. To install them:
 
 OR use the Snakemake rules provided in `rules/renv.smk`.
 
+## Computational requirements
+
+- [X] The replication package contains one or more programs to install all dependencies and set up the necessary directory structure. 
+
+Portions of the code use bash scripting, which may require Linux.
+
+### Controlled Randomness
+
+- [X] No Pseudo random generator is used in the analysis described here.
+
+#### Summary
+
+Approximate time needed to reproduce the analyses on a standard (CURRENT YEAR) desktop machine:
+
+- [X] <10 minutes
+- [ ] 10-60 minutes
+- [ ] 1-2 hours
+- [ ] 2-8 hours
+- [ ] 8-24 hours
+- [ ] 1-3 days
+- [ ] 3-14 days
+- [ ] > 14 days
+
+Approximate storage space needed:
+
+- [X] < 25 MBytes
+- [ ] 25 MB - 250 MB
+- [ ] 250 MB - 2 GB
+- [ ] 2 GB - 25 GB
+- [ ] 25 GB - 250 GB
+- [ ] > 250 GB
+
+- [ ] Not feasible to run on a desktop machine, as described below.
+
+#### Details
+
+The code was last run on a **16-core Intel-based laptop with PopOS version 5.18.10-76051810-generic with 50GB of free space**. 
+
 ## Instructions for Replication
+
 
 1. **Clone the Repository**:
    ```bash
