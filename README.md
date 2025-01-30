@@ -17,9 +17,14 @@ For detailed variable descriptions and data collection methodologies, refer to t
 
 The analysis is conducted using R scripts organized in the `src/` directory. 
 
-- `src/script1.R`: Description of analysis or figure/table generated.
-- `src/script2.R`: Description of analysis or figure/table generated.
-- ...
+- `src/code/`: Contains all the code to clean and analyze the data
+  - `src/code/analysis/`: Scripts to conduct statistical analysis
+  - `src/code/data-prep/`: Scripts to clean the data prior to analysis
+  - `src/code/figs/`: Scripts to assemble the figures used in the Discussion paper
+  - `src/code/tables/`: Scripts to assemble the tables used in the Discussion paper
+- `src/data/`: Contains the data and data README files
+- `src/data-specs/`: Contains JSON formatted files that specify which subset of data to use in the analysis
+- `src/lib/` Contains scripts to install `renv` via Snakemake
 
 The project utilizes the `renv` package for R to manage dependencies, ensuring a reproducible environment. The `renv.lock` file captures the exact package versions used.
 
@@ -95,7 +100,7 @@ Margarita Leib, Nils Köbis, Rainer Michael Rilke, Marloes Hagens, Bernd Irlenbu
 
 Additionally, cite our replication report as:
 
-[Lachlan Deer, Adithya  Krishna, Lyla Zhang]. (2025). "Replication Report:  Corrupted By Algorithms? How AI-generated And Human-written Advice Shape (Dis)Honesty". I4R Discussion Paper Series XXX
+Lachlan Deer, Adithya  Krishna, Lyla Zhang. (2025). "Replication Report:  Corrupted By Algorithms? How AI-generated And Human-written Advice Shape (Dis)Honesty". I4R Discussion Paper Series XXX
 
 This project is licensed under the [MIT License](LICENSE).
 
