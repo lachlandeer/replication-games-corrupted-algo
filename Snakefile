@@ -1,22 +1,10 @@
 # Main Workflow - Corrupted Algorithms
-# Contributors: @lachlandeer
+# Contributors: @lachlandeer, Adithya Krishna & Lyla Zhang
 import glob
 
 # --- Importing Configuration Files --- #
 configfile: "paths.yaml"
 
-# --- PROJECT NAME --- #
-PROJ_NAME = "corrupt_algs_replication"
-
-# --- Dictionaries --- #
-# # Identify subset conditions for data
-# DATA_SUBSET = glob_wildcards(config["src_data_specs"] + "{fname}.json").fname
-# # Models we want to estimate
-# MODELS = glob_wildcards(config["src_model_specs"] + "{fname}.json").fname
-# # plots we want to build
-# PLOTS = glob_wildcards(config["src_figures"] + "{fname}.R").fname
-# # tables to generate
-# TABLES = glob_wildcards(config["src_table_specs"] + "{fname}.json").fname
 
 # --- Variable Declarations ---- #
 runR = "Rscript --no-save --no-restore --verbose"
